@@ -17,14 +17,6 @@ my $api = {
     url     => '/api/router',
     type    => 'remoting',
     actions => {
-        JSON => [
-            { name => 'index', len => 0 },
-        ],
-        Calculator => [
-            { name => 'add',      len => 2 },
-            { name => 'upload',   len => 0 },
-            { name => 'subtract', len => 0 },
-        ],
         REST => [
             { name => 'create',  len => 2 },
             { name => 'read',    len => 2 },
@@ -48,9 +40,6 @@ my $api = {
             { name => 'submit', len => 0, formHandler => \1 },
             { name => 'list',    len => 1 },
         ],
-        NestedController => [
-            { name => 'index', len => 0 },
-        ]
     }
 };
 
@@ -70,7 +59,7 @@ is_deeply( $json, $api, 'expected api' );
 my $lens = 0;
 my $content = $mech->content;
 $lens++ while( $content =~ /"len":(\d+)/g );
-is($lens, 22 );
+is($lens, 17 );
 
 $mech->get_ok( '/api?namespace=MyApp', undef, 'get api via a request' );
 ok( $json = decode_json( $mech->content ), 'valid json' );
