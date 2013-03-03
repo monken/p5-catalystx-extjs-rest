@@ -266,7 +266,7 @@ sub paging_rs {
 
     return $rs if($start == 0 && $limit == 0);
 
-    my @direction = grep { $_ eq (lc($params->{dir}) || 'asc') } qw(asc desc);
+    my @direction = grep { $_ eq (lc($params->{dir} || 'asc')) } qw(asc desc);
     my $direction = q{-}.(shift @direction);
     
     my $sort = $params->{sort} || $self->order_by || undef;

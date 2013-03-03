@@ -8,12 +8,12 @@ __END__
 
 =head1 SYNOPSIS
 
-package MyApp::Controller::User;
-
-use Moose;
-BEGIN { extends 'CatalystX::Controller::ExtJS::REST' }
-
-__PACKAGE__->config( default_resultset => 'User',
+ package MyApp::Controller::User;
+ 
+ use Moose;
+ BEGIN { extends 'CatalystX::Controller::ExtJS::REST' }
+ 
+ __PACKAGE__->config( default_resultset => 'User',
                      forms             => {
                               default => [
                                   { name => 'id' },
@@ -21,8 +21,8 @@ __PACKAGE__->config( default_resultset => 'User',
                                   { name => 'password' }
                               ],
                      } );
-
-1;
+ 
+ 1;
 
 
 =head1 DESCRIPTION

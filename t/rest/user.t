@@ -36,7 +36,7 @@ for (0..1) {
 
     is($json->{results}, 1, 'one results');
 
-    $mech->get("/${inline}user/999", undef, 'get user 999');
+    $mech->get("/${inline}user/999");
 
     ok($json = JSON::decode_json($mech->content), 'response is JSON response');
 

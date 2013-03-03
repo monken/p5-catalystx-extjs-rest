@@ -207,7 +207,7 @@ ok(exists $json->{message}->{success}, 'Success status exists');
 
 ok(!$json->{message}->{success}, 'Success is false');
 
-is($json->{status}, 400, 'Status is set to 400');
+is($json->{status_code}, 400, 'Status is set to 400');
 
 sub count_users {
 	my $user = shift;
