@@ -12,7 +12,7 @@ use HTML::FormFu::ExtJS 0.076;
 use Path::Class;
 use HTML::Entities;
 use Lingua::EN::Inflect;
-use JSON::Any;
+use JSON;
 use Try::Tiny;
 
 use Moose::Util::TypeConstraints;
@@ -548,7 +548,7 @@ sub end {
           )
           || 'rest';
         my $output;
-        eval { $output = JSON::Any->new->encode( $c->stash->{$stash_key} ); };
+        eval { $output = encode_json( $c->stash->{$stash_key} ); };
 
         $c->res->content_type('text/html');
         $c->res->output( encode_entities($output) );

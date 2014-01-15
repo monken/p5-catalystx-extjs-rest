@@ -26,7 +26,7 @@ for (0..1) {
 
     ok($json = JSON::decode_json($res->content), 'response is JSON response');
 
-    is($json->{success}, 'true', 'submission was successful');
+    is($json->{success}, JSON::true, 'submission was successful');
 
     is($res->header('location'), "http://localhost/${inline}user/1", 'user location is set');
 
@@ -57,7 +57,7 @@ for (0..1) {
 
     ok($json = JSON::decode_json($mech->content), 'response is JSON response');
 
-    is($json->{success}, 'true', 'change was successful');
+    is($json->{success}, JSON::true, 'change was successful');
 
     is($json->{data}->{name}, 'bas', 'user name has changed');
 
@@ -68,7 +68,7 @@ for (0..1) {
 
     ok($json = JSON::decode_json($mech->content), 'response is JSON response');
 
-    is($json->{success}, 'true', 'change was successful');
+    is($json->{success}, JSON::true, 'change was successful');
 
     is($json->{data}->{name}, 'bast', 'user name has changed');
 

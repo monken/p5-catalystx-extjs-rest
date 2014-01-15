@@ -16,4 +16,10 @@ my $res = $mech->get('/skipend/form/edit_record');
 is($res->header('status'), 200, 'status ok');
 $mech->content_contains('MyApp.Forms.EditRecord.skipend_test', 'contains form name');
 $mech->content_contains("this.rest_url = '/skipend/'", 'contains action');
-$mech->content_contains('{"hideLabel":true,"name":"id","fieldLabel":null,"xtype":"textfield"},{"hideLabel":true,"name":"password","fieldLabel":null,"xtype":"textfield"},{"hideLabel":true,"name":"name","fieldLabel":null,"xtype":"textfield"}]', 'contains fields');
+my ($items) = ($mech->content =~ /items:\s+(.*?)\n/);
+$items = decode_json($items);
+is_deeply($items, [
+	{	hideLabel => JSON::true, name => "id", fieldLabel => undef, xtype => "textfield" },
+	{	hideLabel => JSON::true, name => "password", fieldLabel => undef, xtype => "textfield" },
+	{	hideLabel => JSON::true, name => "name", fieldLabel => undef, xtype => "textfield" },
+], "contains fields");

@@ -20,6 +20,6 @@ ok(my $json = JSON::decode_json($res->content), 'response is JSON response');
 
 ok(exists $json->{success}, 'Success status exists');
 
-is("$json->{success}", 'false', 'Success is false');
+is($json->{success}, JSON::false, 'Success is false');
 
 done_testing;

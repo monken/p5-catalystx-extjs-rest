@@ -14,7 +14,7 @@ my $mech = Test::WWW::Mechanize::Catalyst->new();
 
 $mech->add_header('Accept' => 'application/json');
 
-$mech->get_ok('/findordefault/nonsense', undef, 'get non existing user');
+$mech->get_ok('/findordefault/-10', undef, 'get non existing user');
 
 ok(my $json = JSON::decode_json($mech->content), 'response is JSON response');
 

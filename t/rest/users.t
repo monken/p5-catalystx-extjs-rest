@@ -93,13 +93,13 @@ for(0..1) {
 
     is(@{$json->{errors}}, 1, 'one error found');
 
-    $mech->get_ok("/${inline}users?start=10&limit=20&sort=password&dir=ASC&ending=2", undef, 'get users which end with 2');
+    $mech->get_ok("/${inline}users?start=10&limit=20&sort=password&dir=ASC&gt=180", undef, 'get users which id > 180');
 
     ok($json = JSON::decode_json($mech->content), 'response is JSON response');
 
     is(@{$json->{data}}, 10, '10 users found');
 
-    map { ok($_->{name} =~ /2$/, 'user ends with 2') } @{$json->{data}};
+    map { ok($_->{id} > 180, 'user id > 180') } @{$json->{data}};
 }
 
 done_testing;

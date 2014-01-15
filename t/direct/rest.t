@@ -29,7 +29,9 @@ ok(
 
 count_users(3);
 
-count_users(1, [{ending => '2'}]);
+count_users(1, [{gt => 2 }]);
+
+count_users(2, [{gt => 1 }]);
 
 count_users(0, [{resultset => 'none'}]);
 
