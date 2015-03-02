@@ -18,14 +18,21 @@ ok(
     'get api directly from controller'
 );
 
-ok(
-    $mech->request(
-        POST $api->{url},
-        Content_Type => 'application/json',
-        Content      => q({"action":"User","method":"create","data":[{"rows":[{"name":"a","password":1},{"name":"a","password":1},{"name":"m","password":1}]}],"type":"rpc","tid":6})
-    ),
-    'create users'
-);
+my $user_id;
+for my $user_json_data (
+    '{"name":"a","password":1}',
+    '{"name":"a","password":1}',
+    '{"name":"m","password":1}')
+{
+    ok(
+        $mech->request(
+            POST $api->{url},
+            Content_Type => 'application/json',
+            Content      => qq({"action":"User","method":"create","data":[$user_json_data],"type":"rpc","tid":6})
+        ),
+        'create user ' . ++$user_id
+    );
+}
 
 count_users(3);
 
@@ -58,7 +65,7 @@ ok(
         {"action":"User","method":"destroy","data":[{"rows":[2,3]}],"type":"rpc","tid":3}
 )
     ),
-    'delete user 1'
+    'delete users 2 and 3'
 );
 
 
